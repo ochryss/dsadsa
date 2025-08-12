@@ -1,3 +1,4 @@
+console.log('a')
 a = async () => {
     var b = await fetch("https://dresch.dev.br/api/register", {
       "headers": {

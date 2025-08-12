@@ -1,0 +1,44 @@
+a = async () => {
+    var b = await fetch("https://dresch.dev.br/api/register", {
+      "headers": {
+        "accept": "*/*",
+        "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+        "content-type": "application/json",
+        "priority": "u=1, i",
+        "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin"
+      },
+      "referrer": "https://dresch.dev.br/",
+      "body": JSON.stringify({
+           username: btoa(Math.floor(Math.random() * 100000)).replace(/[^a-zA-Z0-9]/g, ''),
+           password: btoa(Math.floor(Math.random() * 100000)).replace(/[^a-zA-Z0-9]/g, ''),
+      }),
+      "method": "POST",
+      "mode": "cors",
+      "credentials": "include"
+    }).then(b => {
+        if (b.status === 200) window.location.reload();
+    });
+
+    var i = 0;
+    
+    while (i<60) {
+        await ws?.send(JSON.stringify({
+            type: 'place',
+            x: Math.floor(Math.random() * 20),
+            y: Math.floor(Math.random() * 20),
+            color: '#000000'
+        }));
+        i++
+    }
+
+    await fetch("https://dresch.dev.br/api/logout", {
+      "method": "POST"  
+    });
+
+    a();
+}

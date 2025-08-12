@@ -1,5 +1,4 @@
-console.log('a')
-a = async () => {
+(a = async () => {
     var b = await fetch("https://dresch.dev.br/api/register", {
       "headers": {
         "accept": "*/*",
@@ -42,5 +41,4 @@ a = async () => {
     });
 
     a();
-}
-a()
+})()
